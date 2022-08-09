@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:islami/home_layout.dart';
 import 'package:islami/my_themes.dart';
 import 'package:islami/sura_details/sura_details.dart';
+import 'package:islami/tabs/ahadeth/hadeth_details.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,8 +18,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: HomeLayout.routeName,
       routes: {
-        HomeLayout.routeName:  (c) => HomeLayout(),
-        SuraDetails.routeName: (c)=> SuraDetails(),
+        HomeLayout.routeName: (c) => HomeLayout(),
+        SuraDetails.routeName: (c) => SuraDetails(),
+        HadethDetails.routeName: (c) => HadethDetails(),
       },
       theme: MyThemeData.lightTheme,
       darkTheme: MyThemeData.darkTheme,
