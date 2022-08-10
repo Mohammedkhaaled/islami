@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islami/providers/app_provider.dart';
 import 'package:islami/settings/settings.dart';
-import 'package:islami/tabs/Tasbeeh.dart';
 import 'package:islami/tabs/ahadeth/ahadeth.dart';
 import 'package:islami/tabs/quran/quran.dart';
 import 'package:islami/tabs/radio.dart';
+import 'package:islami/tabs/tasbeh.dart';
 import 'package:provider/provider.dart';
 
 class HomeLayout extends StatefulWidget {
