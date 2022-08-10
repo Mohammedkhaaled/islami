@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:islami/providers/app_provider.dart';
+import 'package:islami/settings/settings.dart';
 import 'package:islami/tabs/Tasbeeh.dart';
 import 'package:islami/tabs/ahadeth/ahadeth.dart';
 import 'package:islami/tabs/quran/quran.dart';
 import 'package:islami/tabs/radio.dart';
+import 'package:provider/provider.dart';
 
 class HomeLayout extends StatefulWidget {
-  static const String routeName ='home';
-  int currentIndex=0;
+  static const String routeName = 'home';
 
   @override
   State<HomeLayout> createState() => _HomeLayoutState();
@@ -17,10 +20,13 @@ class _HomeLayoutState extends State<HomeLayout> {
 
   @override
   Widget build(BuildContext context) {
+    var pro = Provider.of<AppProvider>(context);
+
     return Stack(
       children: [
-        Image.asset("assets/images/main_background.png",
-        width: double.infinity,
+        Image.asset(
+          pro.changeMainBackground(),
+          width: double.infinity,
           height: double.infinity,
           fit: BoxFit.fill,
         ),
@@ -28,11 +34,14 @@ class _HomeLayoutState extends State<HomeLayout> {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             centerTitle: true,
-            title: Text('Islami',style: Theme.of(context).textTheme.headline1,),
+            title: Text(
+              AppLocalizations.of(context)!.islamititle,
+              style: Theme.of(context).textTheme.headline1,
+            ),
           ),
           bottomNavigationBar: Theme(
             data: Theme.of(context).copyWith(
-              canvasColor: Theme.of(context).primaryColor
+                canvasColor: Theme.of(context).primaryColor
             ),
             child: BottomNavigationBar(
               onTap:(index) {
@@ -43,10 +52,21 @@ class _HomeLayoutState extends State<HomeLayout> {
               },
               currentIndex: currentIndex,
               items: [
-                BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/images/quran.png')),label: 'Quran'),
-                BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/images/sebha.png')),label: 'Tasbeh'),
-                BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/images/radio.png')),label: 'Radio'),
-                BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/images/ahadeth.png')),label: 'Ahadeth'),
+                BottomNavigationBarItem(
+                    icon: ImageIcon(AssetImage('assets/images/quran.png')),
+                    label: AppLocalizations.of(context)!.quran),
+                BottomNavigationBarItem(
+                    icon: ImageIcon(AssetImage('assets/images/sebha.png')),
+                    label: AppLocalizations.of(context)!.sebha),
+                BottomNavigationBarItem(
+                    icon: ImageIcon(AssetImage('assets/images/radio.png')),
+                    label: AppLocalizations.of(context)!.radio),
+                BottomNavigationBarItem(
+                    icon: ImageIcon(AssetImage('assets/images/ahadeth.png')),
+                    label: AppLocalizations.of(context)!.hadeth),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.settings),
+                    label: AppLocalizations.of(context)!.setting),
               ],
             ),
           ),
@@ -55,5 +75,12 @@ class _HomeLayoutState extends State<HomeLayout> {
       ],
     );
   }
-  List<Widget> tabs=[QuranScreen(),Tasbeehscreen(),RadioScreen(),AhadethScreen()];
+
+  List<Widget> tabs = [
+    QuranScreen(),
+    Tasbeehscreen(),
+    RadioScreen(),
+    AhadethScreen(),
+    SettingsTab()
+  ];
 }

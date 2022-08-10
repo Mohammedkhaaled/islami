@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:islami/providers/app_provider.dart';
 import 'package:islami/sura_details/suran_details_item.dart';
+import 'package:provider/provider.dart';
 
 class SuraDetails extends StatefulWidget {
   static const String routeName ='suradetails';
@@ -16,18 +18,20 @@ class _SuraDetailsState extends State<SuraDetails> {
 
   @override
   Widget build(BuildContext context) {
-    SuraDetailsArg=ModalRoute.of(context)?.settings.arguments as SuraDetailsArgs;
-    if(verses.isEmpty){
+    SuraDetailsArg =
+        ModalRoute.of(context)?.settings.arguments as SuraDetailsArgs;
+    var pro = Provider.of<AppProvider>(context);
+    if (verses.isEmpty) {
       loadFile(SuraDetailsArg.index);
     }
 
-    return Stack(
-      children: [
-      Image.asset("assets/images/main_background.png",
-      width: double.infinity,
-      height: double.infinity,
-      fit: BoxFit.fill,
-    ),
+    return Stack(children: [
+      Image.asset(
+        pro.changeMainBackground(),
+        width: double.infinity,
+        height: double.infinity,
+        fit: BoxFit.fill,
+      ),
     Scaffold(
     backgroundColor: Colors.transparent,
     appBar: AppBar(
