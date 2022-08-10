@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'hadeth_name_item.dart';
 
@@ -24,7 +25,7 @@ class _AhadethScreenState extends State<AhadethScreen> {
           thickness: 3,
         ),
         Text(
-          "Ahadeth",
+          AppLocalizations.of(context)!.ahadeth,
           style: Theme.of(context).textTheme.headline2,
         ),
         Divider(
